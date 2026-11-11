@@ -18,6 +18,8 @@ public class Scope : MonoBehaviour
 
 	void Awake() { lr = GetComponent<LineRenderer>(); lr.positionCount = samples; }
 
+	float side = 1;
+
 	void Update()
 	{
 		Frequency = Mathf.Lerp(config.minFreq, config.maxFreq, knob);
