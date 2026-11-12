@@ -4,7 +4,8 @@ using UnityEngine;
 public class Scope : MonoBehaviour
 {
 	public LevelRadioConfig config;
-	[Range(0, 1)] public float knob;
+	//[Range(0, 1)] public float knob;
+	[SerializeField] private Knob knob;
 	public int samples = 512;
 	public float scrollSpeed = 2f;
 	public float shapeSmoothing = 6f;
@@ -22,7 +23,7 @@ public class Scope : MonoBehaviour
 
 	void Update()
 	{
-		Frequency = Mathf.Lerp(config.minFreq, config.maxFreq, knob);
+		Frequency = Mathf.Lerp(config.minFreq, config.maxFreq, knob.knobValue);
 
 		ShapeAsset targetShape = null;
 		float target = 0f;
@@ -54,7 +55,7 @@ public class Scope : MonoBehaviour
 
 	void Draw()
 	{
-		float cycles = Mathf.Lerp(config.minCycles, config.maxCycles, knob);
+		float cycles = Mathf.Lerp(config.minCycles, config.maxCycles, knob.knobValue);
 		phase += Time.deltaTime * scrollSpeed;
 
 		int K = currentShape
